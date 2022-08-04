@@ -6,7 +6,6 @@ const {STATUS_MSG} = require('../../../config/responseMessages');
 const { sendSuccess } = require("../../../utils/helpers");
 
 module.exports = {
-
     getUser: catchAsync(async(req,res,next) => {
         next(new AppError(STATUS_MSG.SUCCESS.DEFAULT, 500));
     }),
@@ -28,7 +27,6 @@ module.exports = {
         
 
     }),
-    
     protected: catchAsync(async(req,res,next) => {
         
    

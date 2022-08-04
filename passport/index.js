@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const opts =  {}
-
+const {STATUS_MSG} = require('../config/responseMessages');
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
@@ -45,8 +45,8 @@ module.exports = {
             if (err && err.name && err.name == 'JsonWebTokenError') {
                 next(new AppError("Invalid token",403))                 
             }
-            
-            if(err) next(new AppError("Token not found!",401))
+            // console.log(STATUS_MSG.ERROR.TOKEN_NOT_FOUND,"LLL")
+            if(err) next(new AppError(STATUS_MSG.ERROR.TOKEN_NOT_FOUND,401))
 
             if(!admin)  next(new AppError("Authorization is required!",401));
 
